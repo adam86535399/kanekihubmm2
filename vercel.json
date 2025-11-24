@@ -4,16 +4,20 @@
     {
       "src": "api/redirect.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "pages/index.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/",
+      "src": "/api/redirect",
       "dest": "/api/redirect.js"
     },
     {
-      "src": "/api/redirect",
-      "dest": "/api/redirect.js"
+      "src": "/",
+      "dest": "/pages/index.js"
     }
   ]
 }
