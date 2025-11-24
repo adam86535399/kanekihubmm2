@@ -1,27 +1,25 @@
-// api/proxy.js - Version avec logs détaillés
 export default async function handler(req, res) {
-  console.log('=== NOUVELLE REQUÊTE PROXY ===');
-  console.log('Method:', req.method);
-  console.log('Headers:', req.headers);
-  
+  // Enable CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method === 'POST') {
     try {
-      const body = req.body;
-      console.log('Body received:', JSON.stringify(body, null, 2));
+      const { target, data } = req.body;
       
-      const { target, data } = body;
+      console.log('📨 Received request for target:', target);
       
-      if (!target || !data) {
-        console.log('❌ Données manquantes');
-        return res.status(400).json({ error: 'Missing target or data' });
+      if (!target || !target.includes('discord.com')) {
+        return res.status(400).json({ error: 'Invalid target URL' });
       }
-      
-      console.log('🎯 Target:', target);
-      console.log('📦 Data to send:', JSON.stringify(data, null, 2));
-      
-      // Envoyer vers Discord
-      console.log('🔄 Sending to Discord...');
-      const response = await fetch(target, {
+
+      // Send to Discord
+      const discordResponse = await fetch(target, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,37 +27,24 @@ export default async function handler(req, res) {
         body: JSON.stringify(data),
       });
 
-      console.log('📨 Discord response status:', response.status);
-      console.log('📨 Discord response ok:', response.ok);
+      const responseData = await discordResponse.text();
       
-      const responseText = await response.text();
-      console.log('📨 Discord response body:', responseText);
+      console.log('✅ Discord response status:', discordResponse.status);
+      
+      return res.status(discordResponse.status).json({
+        success: discordResponse.ok,
+        discordStatus: discordResponse.status,
+        response: responseData
+      });
 
-      if (response.ok) {
-        console.log('✅ Successfully sent to Discord');
-        return res.status(200).json({ 
-          success: true, 
-          message: 'Data sent to Discord',
-          discordResponse: responseText 
-        });
-      } else {
-        console.log('❌ Discord response not OK');
-        return res.status(500).json({ 
-          success: false, 
-          error: 'Discord error: ' + response.status,
-          response: responseText 
-        });
-      }
     } catch (error) {
-      console.log('💥 Proxy error:', error.message);
+      console.error('❌ Proxy error:', error);
       return res.status(500).json({ 
         success: false, 
-        error: error.message,
-        stack: error.stack 
+        error: error.message 
       });
     }
-  } else {
-    console.log('❌ Method not allowed:', req.method);
-    return res.status(405).json({ message: 'Method not allowed' });
   }
+
+  return res.status(405).json({ error: 'Method not allowed' });
 }
