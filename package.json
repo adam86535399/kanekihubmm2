@@ -1,4 +1,10 @@
 {
-  "name": "zyrnox-vercel",
-  "version": "1.0.0"
+  "name": "zyrnox-redirect",
+  "version": "1.0.0",
+  "description": "Zyrnox_1 Redirect Service",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {}
 }
