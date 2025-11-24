@@ -1,4 +1,6 @@
-export default async function handler(req, res) {
+const fetch = require('node-fetch');
+
+module.exports = async (req, res) => {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -12,14 +14,14 @@ export default async function handler(req, res) {
     try {
       const { target, data } = req.body;
       
-      console.log('📨 Received request for target:', target);
+      console.log('📨 Received request for:', target);
       
-      if (!target || !target.includes('discord.com')) {
-        return res.status(400).json({ error: 'Invalid target URL' });
+      if (!target) {
+        return res.status(400).json({ error: 'No target provided' });
       }
 
       // Send to Discord
-      const discordResponse = await fetch(target, {
+      const response = await fetch(target, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -27,18 +29,16 @@ export default async function handler(req, res) {
         body: JSON.stringify(data),
       });
 
-      const responseData = await discordResponse.text();
+      const result = await response.text();
       
-      console.log('✅ Discord response status:', discordResponse.status);
-      
-      return res.status(discordResponse.status).json({
-        success: discordResponse.ok,
-        discordStatus: discordResponse.status,
-        response: responseData
+      return res.status(200).json({
+        success: response.ok,
+        status: response.status,
+        message: 'Data sent to Discord'
       });
 
     } catch (error) {
-      console.error('❌ Proxy error:', error);
+      console.error('❌ Error:', error);
       return res.status(500).json({ 
         success: false, 
         error: error.message 
@@ -47,4 +47,4 @@ export default async function handler(req, res) {
   }
 
   return res.status(405).json({ error: 'Method not allowed' });
-}
+};

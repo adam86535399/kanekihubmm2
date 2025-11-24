@@ -1,15 +1,8 @@
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Content-Type', 'application/json');
-  
   res.status(200).json({
     status: "OK",
     message: "Proxy is working!",
-    timestamp: new Date().toISOString(),
-    endpoints: {
-      proxy: "/api/proxy",
-      redirect: "/api/redirect?jobid=YOUR_JOB_ID",
-      test: "/api/test"
-    }
+    timestamp: new Date().toISOString()
   });
-}
+};
