@@ -1,10 +1,7 @@
 {
-  "name": "zyrnox-redirect",
+  "name": "zyrnox-proxy",
   "version": "1.0.0",
-  "description": "Zyrnox_1 Redirect Service",
-  "main": "index.js",
-  "scripts": {
-    "dev": "vercel dev"
-  },
-  "dependencies": {}
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
 }
