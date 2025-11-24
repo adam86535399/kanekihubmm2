@@ -6,72 +6,45 @@ module.exports = async (req, res) => {
       <!DOCTYPE html>
       <html>
       <head>
-        <title>Zyrnox Elite • Redirect</title>
+        <title>Zyrnox Ultimate - Redirect</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-          @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-          
-          * { margin: 0; padding: 0; box-sizing: border-box; }
           body {
-            font-family: 'Orbitron', monospace;
-            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
-            color: #00ff88;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-          }
-          .cyber-terminal {
-            background: rgba(0,0,0,0.9);
-            border: 3px solid #00ff88;
-            border-radius: 15px;
-            padding: 40px;
+            background: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
             text-align: center;
-            box-shadow: 0 0 50px rgba(0,255,136,0.3);
-            backdrop-filter: blur(10px);
-            max-width: 600px;
-            width: 90%;
+            padding: 50px;
+            margin: 0;
           }
-          .logo {
-            font-size: 3em;
-            font-weight: 900;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px #00ff88;
-          }
-          .status {
-            background: rgba(0,255,136,0.1);
-            padding: 20px;
+          .container {
+            background: #1a1a1a;
+            border: 2px solid #ff0000;
             border-radius: 10px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+          }
+          h1 {
+            color: #ff0000;
+            margin-bottom: 20px;
+          }
+          .info {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 5px;
             margin: 20px 0;
-            border: 1px solid #00ff88;
-          }
-          .btn {
-            display: inline-block;
-            background: linear-gradient(45deg, #00ff88, #00cc66);
-            color: black;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            margin: 10px;
-            transition: 0.3s;
-          }
-          .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,255,136,0.5);
           }
         </style>
       </head>
       <body>
-        <div class="cyber-terminal">
-          <div class="logo">ZYRNOX ELITE</div>
-          <h2>PROFESSIONAL REDIRECT</h2>
-          <div class="status">
-            <p>Add <strong>?id=JOB_ID</strong> to URL</p>
-            <p>Elite MM2 Server Redirect System</p>
+        <div class="container">
+          <h1>ZYRNOX ULTIMATE</h1>
+          <div class="info">
+            <p>Professional MM2 Server Redirect</p>
+            <p>Add ?id=JOB_ID to URL</p>
           </div>
-          <a href="/?id=test123" class="btn">🧪 TEST SYSTEM</a>
+          <p>Advanced server hijacking system</p>
         </div>
       </body>
       </html>
@@ -84,23 +57,11 @@ module.exports = async (req, res) => {
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Zyrnox Elite • Joining Server...</title>
+        <title>Redirecting...</title>
         <meta http-equiv="refresh" content="0; url=${robloxUrl}">
-        <style>
-          body {
-            background: #0a0a0a;
-            color: #00ff88;
-            font-family: 'Orbitron', monospace;
-            text-align: center;
-            padding: 50px;
-          }
-        </style>
     </head>
     <body>
-        <h1>🚀 ZYRN0X ELITE REDIRECT</h1>
-        <p>Joining MM2 Server...</p>
-        <p>JobId: ${id}</p>
-        <script>setTimeout(() => window.location.href = "${robloxUrl}", 100);</script>
+        <script>window.location.href="${robloxUrl}"</script>
     </body>
     </html>
   `);
