@@ -12,6 +12,10 @@
       "dest": "/api/proxy.js"
     },
     {
+      "src": "/api/debug", 
+      "dest": "/api/debug.js"
+    },
+    {
       "src": "/api/redirect",
       "dest": "/api/redirect.js"
     },
