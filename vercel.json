@@ -1,15 +1,27 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.js"
-    }
-  ]
+    "version": 2,
+    "builds": [
+        {
+            "src": "app.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/",
+            "dest": "app.py"
+        },
+        {
+            "src": "/join",
+            "dest": "app.py"
+        },
+        {
+            "src": "/api/proxy",
+            "dest": "app.py"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "app.py"
+        }
+    ]
 }
