@@ -1,31 +1,23 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/*.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/test",
-      "dest": "/api/test.js"
-    },
-    {
-      "src": "/api/simple-proxy",
-      "dest": "/api/simple-proxy.js"
-    },
-    {
-      "src": "/api/proxy",
-      "dest": "/api/simple-proxy.js"
-    },
-    {
-      "src": "/api/redirect",
-      "dest": "/api/redirect.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/api/redirect.js"
-    }
-  ]
+    "version": 2,
+    "builds": [
+        {
+            "src": "app.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/",
+            "dest": "app.py"
+        },
+        {
+            "src": "/redirect",
+            "dest": "app.py"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "app.py"
+        }
+    ]
 }
