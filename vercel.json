@@ -8,6 +8,10 @@
   ],
   "routes": [
     {
+      "src": "/",
+      "dest": "/api/redirect.js"
+    },
+    {
       "src": "/api/redirect",
       "dest": "/api/redirect.js"
     }
